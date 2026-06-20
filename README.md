@@ -1,4 +1,17 @@
+<div align="center">
+
 # Sales-Intelligence Lead Scorer
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)](https://python.org)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-1.4+-F7931E?logo=scikit-learn&logoColor=white)](https://scikit-learn.org)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15+-4169E1?logo=postgresql&logoColor=white)](https://postgresql.org)
+[![Status](https://img.shields.io/badge/Status-Production-success)](#)
+[![Top-decile precision](https://img.shields.io/badge/Top--decile%20precision-~0.6-059669)](#results)
+
+</div>
+
+---
 
 > Lead-scoring system for a B2B services client. Ingests CRM and website-engagement data into Postgres, engineers behavioural and firmographic features, trains a logistic-regression baseline plus a gradient-boosted model, and exposes scores back into the CRM via API. Helps sales prioritise the top 20% of inbound leads.
 
