@@ -154,4 +154,6 @@ def write_csv(path: str | Path, n: int = 5000, seed: int = 42) -> Path:
 
 if __name__ == "__main__":
     out = write_csv("data/leads.csv")
-    print(f"wrote {out} ({sum(1 for _ in open(out)) - 1} rows)")
+    with open(out) as fh:
+        n_rows = sum(1 for _ in fh) - 1
+    print(f"wrote {out} ({n_rows} rows)")
