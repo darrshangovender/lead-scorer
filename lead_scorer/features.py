@@ -62,7 +62,7 @@ class FeatureBuilder:
             if df[c].isna().any():
                 raise ValueError(f"Column {c!r} contains nulls; impute upstream.")
 
-    def fit(self, df: pd.DataFrame) -> "FeatureBuilder":
+    def fit(self, df: pd.DataFrame) -> FeatureBuilder:
         """Learn category vocabularies from the training frame."""
         self._validate(df)
         self.categories_ = {c: sorted(df[c].astype(str).unique().tolist()) for c in CATEGORICAL}
