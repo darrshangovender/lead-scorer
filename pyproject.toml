@@ -1,15 +1,11 @@
-[build-system]
-requires = ["setuptools>=68", "wheel"]
-build-backend = "setuptools.build_meta"
-
 [project]
 name = "lead-scorer"
 version = "0.1.0"
 description = "Public reference implementation of a B2B lead-scoring pipeline (LR baseline + calibrated XGBoost)."
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 license = { text = "MIT" }
-authors = [{ name = "Darrshan Govender", email = "darrshan@agulhascode.co.za" }]
+authors = [{ name = "Darrshan Govender", email = "darrshangovender@gmail.com" }]
 keywords = ["machine-learning", "lead-scoring", "xgboost", "sales", "crm"]
 
 dependencies = [
@@ -21,22 +17,35 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+# Executing notebooks/ is a separate concern from running the test suite, so
+# the Jupyter stack is opt-in rather than part of `dev`.
+notebooks = ["jupyter>=1.0", "nbclient>=0.9", "nbformat>=5.9"]
 dev = [
-    "pytest>=7.4",
+    "pytest>=8.0",
     "pytest-cov>=4.1",
-    "jupyter>=1.0",
-    "nbclient>=0.9",
-    "nbformat>=5.9",
+    "ruff>=0.6",
 ]
+
+[project.urls]
+Homepage = "https://github.com/darrshangovender/lead-scorer"
+Issues = "https://github.com/darrshangovender/lead-scorer/issues"
 
 [project.scripts]
 lead-scorer = "lead_scorer.pipeline:run_from_csv"
 
-[tool.setuptools.packages.find]
-include = ["lead_scorer*"]
-exclude = ["tests*", "notebooks*", "data*", "docs*"]
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["lead_scorer"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-python_files = "test_*.py"
+python_files = ["test_*.py"]
 addopts = "-ra -q"
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
