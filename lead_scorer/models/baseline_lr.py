@@ -26,7 +26,7 @@ class LRBaseline:
     model_: LogisticRegression | None = None
     fitted_: bool = False
 
-    def fit(self, X: np.ndarray, y: np.ndarray) -> "LRBaseline":
+    def fit(self, X: np.ndarray, y: np.ndarray) -> LRBaseline:
         X_s = self.scaler_.fit_transform(X)
         self.model_ = LogisticRegression(
             C=self.C,
