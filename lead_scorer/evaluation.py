@@ -53,7 +53,7 @@ def precision_at_top_k_fraction(y_true: np.ndarray, y_score: np.ndarray, fractio
     if not 0 < fraction <= 1:
         raise ValueError(f"fraction must be in (0, 1], got {fraction}")
     n = len(y_true)
-    k = max(1, int(round(n * fraction)))
+    k = max(1, round(n * fraction))
     # argsort descending, take top-k indices.
     top_idx = np.argsort(-y_score, kind="stable")[:k]
     return float(np.mean(y_true[top_idx]))
@@ -69,7 +69,7 @@ def evaluate(y_true: np.ndarray, y_score: np.ndarray) -> RankingMetrics:
         top_decile_precision=precision_at_top_k_fraction(y_true, y_score, 0.10),
         top_quintile_precision=precision_at_top_k_fraction(y_true, y_score, 0.20),
         brier_score=float(brier_score_loss(y_true, y_score)),
-        n_samples=int(len(y_true)),
+        n_samples=len(y_true),
         n_positives=int(y_true.sum()),
     )
 
