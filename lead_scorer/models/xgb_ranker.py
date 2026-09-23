@@ -7,7 +7,7 @@ CRM are usable as probabilities, not just rank-orders.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 import numpy as np
 from sklearn.calibration import CalibratedClassifierCV
@@ -44,7 +44,7 @@ class XGBRanker:
             n_jobs=-1,
         )
 
-    def fit(self, X: np.ndarray, y: np.ndarray) -> "XGBRanker":
+    def fit(self, X: np.ndarray, y: np.ndarray) -> XGBRanker:
         self.base_ = self._make_base()
         self.calibrated_ = CalibratedClassifierCV(
             estimator=self._make_base(),
